@@ -1,0 +1,1 @@
+CREATE TABLE blocks(id SERIAL PRIMARY KEY, blocknumber BIGINT, hash VARCHAR(255), missedblocks BIGINT, block_produced_within_time BIGINT, createdat TIMESTAMP NOT NULL DEFAULT ('now'::text)::timestamp(6) with time zone);
