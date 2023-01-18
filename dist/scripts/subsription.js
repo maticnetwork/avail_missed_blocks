@@ -120,12 +120,13 @@ var Subscription = /** @class */ (function () {
                         return [4 /*yield*/, this.getLastRecord()];
                     case 2:
                         lastRecord = _a.sent();
+                        console.log(lastRecord, "Obina");
                         totalMissedBlock = 0;
-                        tblock = void 0;
+                        tblock = 0;
                         if (lastRecord) {
                             tblock =
                                 parseInt(block) -
-                                    (lastRecord.blocknumber ? parseInt(lastRecord.blocknumber) : 0);
+                                    (lastRecord != undefined ? parseInt(lastRecord.blocknumber) : 0);
                             totalMissedBlock = Math.abs(parseInt(process.env.TOTAL_EXPECTED_BLOCK) - tblock);
                         }
                         else {

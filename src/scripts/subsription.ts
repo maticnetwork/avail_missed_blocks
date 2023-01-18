@@ -64,13 +64,14 @@ export class Subscription {
       const conn = await client.connect();
 
       const lastRecord = await this.getLastRecord();
+      console.log(lastRecord, "Obina");
       let totalMissedBlock: number = 0;
-      let tblock: number;
+      let tblock: number = 0;
 
       if (lastRecord) {
         tblock =
           parseInt(block) -
-          (lastRecord.blocknumber ? parseInt(lastRecord.blocknumber) : 0);
+          (lastRecord != undefined ? parseInt(lastRecord.blocknumber) : 0);
         totalMissedBlock = Math.abs(
           parseInt(process.env.TOTAL_EXPECTED_BLOCK) - tblock
         );
