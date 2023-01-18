@@ -1,8 +1,9 @@
 // Import
 const { ApiPromise, WsProvider } = require("@polkadot/api");
-import { promises as fsPromises } from "fs";
 import client from "../database";
+import dotenv from "dotenv";
 
+dotenv.config();
 export class Subscription {
   // Construct
   async main() {
@@ -72,7 +73,7 @@ export class Subscription {
 
       if (lastRecord) {
         tblock = parseInt(block) - parseInt(lastRecord.blocknumber);
-        totalMissedBlock = 3 - tblock;
+        totalMissedBlock = parseInt(process.env.TOTAL_EXPECTED_BLOCK) - tblock;
       } else {
         totalMissedBlock = 0;
       }

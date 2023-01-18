@@ -7,5 +7,6 @@ const missedblockMothods = new MissedBlockHandler();
 const missedblocks = express.Router();
 
 missedblocks.get("/", missedblockMothods.index);
+missedblocks.get("/:id", missedblockMothods.getAggregatedWithinSpecifiedTime);
 
 export default missedblocks;

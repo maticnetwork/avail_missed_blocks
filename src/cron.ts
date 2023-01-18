@@ -7,7 +7,7 @@ export class CronService {
   async base() {
     //every minute
     cron.schedule("* * * * *", async () => {
-      console.log("Running Cron Job for Charging Customer on Due date");
+      console.log("Running Cron Job for getting last block header");
       sub.main();
     });
   }

@@ -53,7 +53,7 @@ var CronService = /** @class */ (function () {
                 //every minute
                 node_cron_1["default"].schedule("* * * * *", function () { return __awaiter(_this, void 0, void 0, function () {
                     return __generator(this, function (_a) {
-                        console.log("Running Cron Job for Charging Customer on Due date");
+                        console.log("Running Cron Job for getting last block header");
                         sub.main();
                         return [2 /*return*/];
                     });

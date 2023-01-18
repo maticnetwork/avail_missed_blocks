@@ -69,6 +69,33 @@ var MissedBlockModel = /** @class */ (function () {
             });
         });
     };
+    MissedBlockModel.prototype.getAggregatedWithinSpecifiedTime = function (timeframe) {
+        return __awaiter(this, void 0, void 0, function () {
+            var connection, hoursNeeded, duration, statement, result, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, database_1["default"].connect()];
+                    case 1:
+                        connection = _a.sent();
+                        hoursNeeded = 10;
+                        duration = "".concat(timeframe, " hours");
+                        statement = "select * from blocks where createdat > now() - interval '".concat(duration, "'");
+                        return [4 /*yield*/, connection.query(statement)];
+                    case 2:
+                        result = _a.sent();
+                        //close connectio
+                        connection.release();
+                        return [2 /*return*/, result.rows];
+                    case 3:
+                        error_2 = _a.sent();
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
     return MissedBlockModel;
 }());
 exports.MissedBlockModel = MissedBlockModel;

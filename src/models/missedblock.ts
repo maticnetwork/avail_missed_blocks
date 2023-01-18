@@ -27,4 +27,23 @@ export class MissedBlockModel {
       return result.rows;
     } catch (error) {}
   }
+
+  async getAggregatedWithinSpecifiedTime(timeframe: number) {
+    try {
+      //open a connection a connection
+      const connection = await client.connect();
+
+      const hoursNeeded = 10;
+      const duration = `${timeframe} hours`;
+      const statement = `select * from blocks where createdat > now() - interval '${duration}'`;
+
+      //execute the sql statement
+      const result = await connection.query(statement);
+
+      //close connectio
+      connection.release();
+
+      return result.rows;
+    } catch (error) {}
+  }
 }

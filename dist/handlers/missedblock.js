@@ -55,6 +55,39 @@ var MissedBlockHandler = /** @class */ (function () {
             });
         });
     };
+    MissedBlockHandler.prototype.getAggregatedWithinSpecifiedTime = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var timeframe, result, total_block_produced_within_time, total_missedblocks, i, data, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        timeframe = parseInt(req.params.id);
+                        return [4 /*yield*/, missedBlockModel.getAggregatedWithinSpecifiedTime(timeframe)];
+                    case 1:
+                        result = _a.sent();
+                        total_block_produced_within_time = 0;
+                        total_missedblocks = 0;
+                        for (i = 0; i < result.length; i++) {
+                            total_block_produced_within_time += Math.abs(result[i].block_produced_within_time);
+                            total_missedblocks += Math.abs(result[i].missedblocks);
+                        }
+                        data = {
+                            total_block_produced_within_time: total_block_produced_within_time,
+                            total_missed_blocks: total_missedblocks,
+                            duration_in_hrs: timeframe,
+                            records: result
+                        };
+                        return [2 /*return*/, res.json(data)];
+                    case 2:
+                        error_1 = _a.sent();
+                        console.log(error_1.message);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     return MissedBlockHandler;
 }());
 exports.MissedBlockHandler = MissedBlockHandler;

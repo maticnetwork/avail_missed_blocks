@@ -8,4 +8,5 @@ var missedblock_1 = require("../../handlers/missedblock");
 var missedblockMothods = new missedblock_1.MissedBlockHandler();
 var missedblocks = express_1["default"].Router();
 missedblocks.get("/", missedblockMothods.index);
+missedblocks.get("/:id", missedblockMothods.getAggregatedWithinSpecifiedTime);
 exports["default"] = missedblocks;

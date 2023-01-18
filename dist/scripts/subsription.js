@@ -43,6 +43,8 @@ exports.Subscription = void 0;
 // Import
 var _a = require("@polkadot/api"), ApiPromise = _a.ApiPromise, WsProvider = _a.WsProvider;
 var database_1 = __importDefault(require("../database"));
+var dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1["default"].config();
 var Subscription = /** @class */ (function () {
     function Subscription() {
     }
@@ -125,7 +127,7 @@ var Subscription = /** @class */ (function () {
                         tblock = void 0;
                         if (lastRecord) {
                             tblock = parseInt(block) - parseInt(lastRecord.blocknumber);
-                            totalMissedBlock = 3 - tblock;
+                            totalMissedBlock = parseInt(process.env.TOTAL_EXPECTED_BLOCK) - tblock;
                         }
                         else {
                             totalMissedBlock = 0;
