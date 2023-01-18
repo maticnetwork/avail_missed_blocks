@@ -51,11 +51,11 @@ var Subscription = /** @class */ (function () {
     // Construct
     Subscription.prototype.main = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var wsProvider, api, chain, lastHeader, block, hash, filename, error_1;
+            var wsProvider, api, chain, lastHeader, block, hash, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 7, , 8]);
+                        _a.trys.push([0, 6, , 7]);
                         wsProvider = new WsProvider("wss://testnet.polygonavail.net/ws");
                         return [4 /*yield*/, ApiPromise.create({ provider: wsProvider })];
                     case 1:
@@ -78,14 +78,11 @@ var Subscription = /** @class */ (function () {
                         return [4 /*yield*/, this.create({ block: block, hash: hash })];
                     case 5:
                         _a.sent();
-                        return [4 /*yield*/, this.getCurrentDate()];
+                        return [3 /*break*/, 7];
                     case 6:
-                        filename = _a.sent();
-                        return [3 /*break*/, 8];
-                    case 7:
                         error_1 = _a.sent();
                         throw new Error(error_1.message);
-                    case 8: return [2 /*return*/];
+                    case 7: return [2 /*return*/];
                 }
             });
         });
@@ -126,7 +123,9 @@ var Subscription = /** @class */ (function () {
                         totalMissedBlock = 0;
                         tblock = void 0;
                         if (lastRecord) {
-                            tblock = parseInt(block) - parseInt(lastRecord.blocknumber);
+                            tblock =
+                                parseInt(block) -
+                                    (lastRecord.blocknumber ? parseInt(lastRecord.blocknumber) : 0);
                             totalMissedBlock = Math.abs(parseInt(process.env.TOTAL_EXPECTED_BLOCK) - tblock);
                         }
                         else {
@@ -202,6 +201,34 @@ var Subscription = /** @class */ (function () {
                         error_4 = _a.sent();
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Subscription.prototype.getBlockByBlocknumber = function (blockNumber) {
+        return __awaiter(this, void 0, void 0, function () {
+            var conn, connection, sql, result, error_5;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 4, , 5]);
+                        return [4 /*yield*/, database_1["default"].connect()];
+                    case 1:
+                        conn = _a.sent();
+                        return [4 /*yield*/, database_1["default"].connect()];
+                    case 2:
+                        connection = _a.sent();
+                        sql = "SELECT * FROM blocks WHERE blockNumber=($1)";
+                        return [4 /*yield*/, connection.query(sql, [blockNumber])];
+                    case 3:
+                        result = _a.sent();
+                        //close conection
+                        connection.release();
+                        return [2 /*return*/, result.rows[0]];
+                    case 4:
+                        error_5 = _a.sent();
+                        return [3 /*break*/, 5];
+                    case 5: return [2 /*return*/];
                 }
             });
         });

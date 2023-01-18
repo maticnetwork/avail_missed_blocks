@@ -28,17 +28,13 @@ export class Subscription {
       const block = `${lastHeader.number}`;
       const hash = `${lastHeader.hash}`;
       await this.create({ block: block, hash: hash });
-      // await this.getAll();
-      const filename = await this.getCurrentDate();
-      // const myFile = await fsPromises.open(filename, "a+");
-      // await myFile.write("add text");
-      // await myFile.write("add text");
 
       // Subscribe to the new headers
-      // await api.rpc.chain.subscribeNewHeads((lastHeader) => {
+      // await api.rpc.chain.subscribeNewHeads(async (lastHeader) => {
       //   console.log(
       //     `${chain}: last block #${lastHeader.number} has hash ${lastHeader.hash}`
       //   );
+      //   await this.create({ block: block, hash: hash });
       // });
     } catch (error) {
       throw new Error(error.message);
@@ -72,7 +68,9 @@ export class Subscription {
       let tblock: number;
 
       if (lastRecord) {
-        tblock = parseInt(block) - parseInt(lastRecord.blocknumber);
+        tblock =
+          parseInt(block) -
+          (lastRecord.blocknumber ? parseInt(lastRecord.blocknumber) : 0);
         totalMissedBlock = Math.abs(
           parseInt(process.env.TOTAL_EXPECTED_BLOCK) - tblock
         );
@@ -129,6 +127,27 @@ export class Subscription {
 
       //return result to the calling client
       console.log(result.rows, "Welcome");
+    } catch (error) {}
+  }
+
+  async getBlockByBlocknumber(blockNumber: string) {
+    try {
+      const conn = await client.connect();
+
+      //opening a connection to the db
+      const connection = await client.connect();
+
+      //sql query
+      const sql = "SELECT * FROM blocks WHERE blockNumber=($1)";
+
+      //run query
+
+      const result = await connection.query(sql, [blockNumber]);
+
+      //close conection
+      connection.release();
+
+      return result.rows[0];
     } catch (error) {}
   }
 }
