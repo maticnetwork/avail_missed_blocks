@@ -64,7 +64,7 @@ export class Subscription {
       const conn = await client.connect();
 
       const lastRecord = await this.getLastRecord();
-      console.log(lastRecord, "Obina");
+
       let totalMissedBlock: number = 0;
       let tblock: number = 0;
 
@@ -126,8 +126,7 @@ export class Subscription {
       //close conection
       connection.release();
 
-      //return result to the calling client
-      console.log(result.rows, "Welcome");
+      return result.rows;
     } catch (error) {}
   }
 

@@ -120,7 +120,6 @@ var Subscription = /** @class */ (function () {
                         return [4 /*yield*/, this.getLastRecord()];
                     case 2:
                         lastRecord = _a.sent();
-                        console.log(lastRecord, "Obina");
                         totalMissedBlock = 0;
                         tblock = 0;
                         if (lastRecord) {
@@ -195,9 +194,7 @@ var Subscription = /** @class */ (function () {
                         result = _a.sent();
                         //close conection
                         connection.release();
-                        //return result to the calling client
-                        console.log(result.rows, "Welcome");
-                        return [3 /*break*/, 4];
+                        return [2 /*return*/, result.rows];
                     case 3:
                         error_4 = _a.sent();
                         return [3 /*break*/, 4];
