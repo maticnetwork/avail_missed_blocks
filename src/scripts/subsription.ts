@@ -73,7 +73,9 @@ export class Subscription {
 
       if (lastRecord) {
         tblock = parseInt(block) - parseInt(lastRecord.blocknumber);
-        totalMissedBlock = parseInt(process.env.TOTAL_EXPECTED_BLOCK) - tblock;
+        totalMissedBlock = Math.abs(
+          parseInt(process.env.TOTAL_EXPECTED_BLOCK) - tblock
+        );
       } else {
         totalMissedBlock = 0;
       }
