@@ -10,6 +10,7 @@ export class MissedBlockHandler {
 
   async getAggregatedWithinSpecifiedTime(req: Request, res: Response) {
     try {
+      return res.json({ name: "Obinna" });
       const timeframe: number = parseInt(req.params.id);
       const result = await missedBlockModel.getAggregatedWithinSpecifiedTime(
         timeframe
