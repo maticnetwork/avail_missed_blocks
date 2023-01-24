@@ -10,4 +10,4 @@ RUN npm install
 
 EXPOSE 7000
 
-CMD ["node",  "/app/dist/server.js"]
+CMD ["ts-node",  "./app/src/server.ts"]
