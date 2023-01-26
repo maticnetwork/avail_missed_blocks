@@ -8,7 +8,7 @@ var index_1 = __importDefault(require("./routes/index"));
 var cron_1 = require("./cron");
 var cronJob = new cron_1.CronService();
 var app = (0, express_1["default"])();
-var PORT = 80;
+var PORT = process.env.PORT;
 app.use("/api", index_1["default"]);
 cronJob.base();
 app.listen(PORT, function () {

@@ -5,7 +5,7 @@ import { CronService } from "./cron";
 const cronJob = new CronService();
 
 const app = express();
-const PORT = 80;
+const PORT = process.env.PORT;
 
 app.use("/api", routes);
 
