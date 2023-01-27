@@ -6,8 +6,8 @@ COPY package.json .
 
 COPY . .
 
-RUN npm install
+RUN yarn install
 
 EXPOSE 7000
 
-CMD ["npm", "run" "watch"]
+CMD ["yarn", "watch"]

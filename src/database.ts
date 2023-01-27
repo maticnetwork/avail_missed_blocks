@@ -14,21 +14,19 @@ const {
 let client;
 if (ENV == "test") {
   client = new Pool({
-    host: POSTGRES_HOST,
+    host: "db",
     database: POSTGRES_DB,
     user: POSTGRES_USER,
     password: POSTGRES_PASSWORD,
-    port: 5431,
   });
 }
 
 if (ENV == "dev") {
   client = new Pool({
-    host: POSTGRES_HOST,
+    host: "db",
     database: POSTGRES_DB,
     user: POSTGRES_USER,
     password: POSTGRES_PASSWORD,
-    port: 5431,
   });
 }
 
