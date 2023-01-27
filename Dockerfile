@@ -8,6 +8,6 @@ COPY . .
 
 RUN yarn install
 
-EXPOSE 8080
+EXPOSE 80
 
 CMD ["yarn", "watch"]
