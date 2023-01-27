@@ -4,7 +4,7 @@ services:
   server:
     build: .
     ports:
-      - "7000:7000"
+      - "8080:7000"
     links:
       - db
   db:
