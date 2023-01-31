@@ -27,7 +27,7 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=1234
 TOTAL_EXPECTED_BLOCK=15
 ENV=dev
-PORT=8000
+PORT=8080
 ```
 
 ## Config reference
@@ -134,38 +134,10 @@ Query parameter `decode=true` can be used to return submitted data in base64 enc
 curl -s localhost:7000/v1/appdata/<block-number>?decode=true
 ```
 
-Returns the Mode of the Light Client
-
-```bash
-curl -s localhost:7000/v1/mode
-```
-
-Returns the status of a latest block
-
-```bash
-curl -s localhost:7000/v1/status
-```
-
-Returns the latest block
-
-```bash
-curl -s localhost:7000/v1/latest_block
-```
-
-## Test Code Coverage Report
-
-We are using [grcov](https://github.com/mozilla/grcov) to aggregate code coverage information and generate reports.
-
-To install grcov, run:
-
-```bash
-cargo install grcov
-```
-
-To run the service:
+## Test the missed block service
 
 ```bash
 
-Open `http://localhost:7000/api/missed-blocks/24` from your browser to view missed blocks within the last 24 hours if you want to view for the last 1 hour all you need to do is to change the 24 in the url to 1 `http://localhost:7000/api/missed-blocks/1` or for any number of hours you intend viewing.
+Open `http://localhost:8080/api/missed-blocks/24` from your browser to view missed blocks within the last 24 hours if you want to view for the last 1 hour all you need to do is to change the 24 in the url to 1 `http://localhost:7000/api/missed-blocks/1` or for any number of hours you intend viewing.
 
 ```
