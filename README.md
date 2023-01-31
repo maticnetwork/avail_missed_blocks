@@ -124,13 +124,10 @@ To install grcov, run:
 cargo install grcov
 ```
 
-Source code coverage data is generated when running tests with:
+To run the service:
 
 ```bash
-env RUSTFLAGS="-C instrument-coverage" \
-	LLVM_PROFILE_FILE="tests-coverage-%p-%m.profraw" \
-	cargo test
-```
 
-To run the service:
-Open `http://localhost:7000/api/missed-blocks/24` from your browser to view missed blocks within the last 24 hours, if you want to view for the last 1 hour all you need to do is to change the 24 in the url to 1 `http://localhost:7000/api/missed-blocks/1` or for any number of hours you intend viewing
+Open `http://localhost:7000/api/missed-blocks/24` from your browser to view missed blocks within the last 24 hours if you want to view for the last 1 hour all you need to do is to change the 24 in the url to 1 `http://localhost:7000/api/missed-blocks/1` or for any number of hours you intend viewing.
+
+```
