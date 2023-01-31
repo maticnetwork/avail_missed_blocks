@@ -59,10 +59,10 @@ PORT=8000
 
 ## Usage
 
-Given a block number (as _(hexa-)_ decimal number), return confidence obtained by the light client for this block:
+cd in to the root directory of the cloned repository
 
 ```bash
-curl -s localhost:7000/v1/confidence/ <block-number>
+cd avail_missed_blocks
 ```
 
 Result:
