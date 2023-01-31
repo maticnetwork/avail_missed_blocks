@@ -65,18 +65,11 @@ cd in to the root directory of the cloned repository
 cd avail_missed_blocks
 ```
 
-Result:
+Run the following commannds to pull the docker images and start the container services :
 
 ```json
-{
-  "number": 223,
-  "confidence": 99.90234375,
-  "serialisedConfidence": "958776730446"
-}
+docker-compose up --build -d
 ```
-
-> `serialisedConfidence` is calculated as:
-> `blockNumber << 32 | int32(confidence * 10 ** 7)`, where confidence is represented out of 10 \*\* 9.
 
 Given a block number (as _(hexa-)_ decimal number), return the extrinsic in hex string format, if app id is specified in the config
 
