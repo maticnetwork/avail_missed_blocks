@@ -71,6 +71,37 @@ cd avail_missed_blocks
 docker-compose up --build -d
 ```
 
+Result:
+
+```bash
+Creating network "avail_missed_blocks_default" with the default driver
+Building server
+[+] Building 421.5s (12/12) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                     0.1s
+ => => transferring dockerfile: 192B                                                                                                                     0.0s
+ => [internal] load .dockerignore                                                                                                                        0.1s
+ => => transferring context: 34B                                                                                                                         0.0s
+ => [internal] load metadata for docker.io/library/node:17-alpine                                                                                        3.6s
+ => [auth] library/node:pull token for registry-1.docker.io                                                                                              0.0s
+ => CACHED [1/6] FROM docker.io/library/node:17-alpine@sha256:76e638eb0d73ac5f0b76d70df3ce1ddad941ac63595d44092b625e2cd557ddbf                           0.0s
+ => [internal] load build context                                                                                                                        0.8s
+ => => transferring context: 76.74kB                                                                                                                     0.7s
+ => [2/6] RUN apk add g++ make py3-pip                                                                                                                 211.3s
+ => [3/6] WORKDIR /app                                                                                                                                   0.1s
+ => [4/6] COPY package.json .                                                                                                                            0.0s
+ => [5/6] COPY . .                                                                                                                                       0.2s
+ => [6/6] RUN yarn install                                                                                                                             175.3s
+ => exporting to image                                                                                                                                  30.5s
+ => => exporting layers                                                                                                                                 30.4s
+ => => writing image sha256:9145e879416f467e4e10b301524885d3e8b1bd962754fd888741eeab0a8b5892                                                             0.0s
+ => => naming to docker.io/library/avail_missed_blocks_server                                                                                            0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+Creating avail_missed_blocks_db_1 ... done
+Creating avail_missed_blocks_server_1 ... done
+
+```
+
 Two (2) docker containers will be created namely:
 
 ```bash
@@ -84,16 +115,23 @@ Two (2) docker containers will be created namely:
 docker exec avail_missed_blocks_server_1 yarn migrate
 ```
 
+Result:
+
+```bash
+yarn run v1.22.19
+$ db-migrate --env test up && db-migrate up
+received data: CREATE TABLE blocks(id SERIAL PRIMARY KEY, blocknumber BIGINT, hash VARCHAR(255), missedblocks BIGINT, block_produced_within_time BIGINT, createdat TIMESTAMP NOT NULL DEFAULT ('now'::text)::timestamp(6) with time zone);
+[INFO] Processed migration 20230116094401-blocks-table
+[INFO] Done
+[INFO] No migrations to run
+[INFO] Done
+Done in 1.52s.
+```
+
 Query parameter `decode=true` can be used to return submitted data in base64 encoded string:
 
 ```bash
 curl -s localhost:7000/v1/appdata/<block-number>?decode=true
-```
-
-Result:
-
-```json
-{ "block": 386, "extrinsics": ["{base64_encoded_submit_data}"] }
 ```
 
 Returns the Mode of the Light Client
