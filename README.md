@@ -49,9 +49,9 @@ PORT=8000
 
 ## Notes
 
-- This service is experiemental to help us track the number of missed block in the avail network, missed blocks could occur for various reasons.
-- 1. May be there is a best block stuk issue
-- 2. There could be a performamnce issue with the various validator nodes participating ion the network
+- This service is experiemental, to help us track the number of missed blocks in the avail network, missed blocks could occur for various reasons.
+- 1. May be there is a best block stuck issue
+- 2. There could be a performamnce issue with the various validator nodes participating on the network
 
 > `This service have a cron job that runs every 5 minutes` the cron job subscribes to finalised block headers at every 5 minutes, looking at the performance of the
 > `avail network`,approximately a single block is produced every 20 seconds. which means 15 blocks should be produced every 5 minutes, hence the reason for the
@@ -132,21 +132,5 @@ env RUSTFLAGS="-C instrument-coverage" \
 	cargo test
 ```
 
-To generate the report, run:
-
-```bash
-grcov . -s . \
-	--binary-path ./target/debug/ \
-	-t html \
-	--branch \
-	--ignore-not-existing -o \
-	./target/debug/coverage/
-```
-
-To clean up generate coverage information files, run:
-
-```bash
-find . -name \*.profraw -type f -exec rm -f {} +
-```
-
-Open `index.html` from the `./target/debug/coverage/` folder to review coverage data.
+To run the service:
+Open `http://localhost:7000/api/missed-blocks/24` from your browser to view missed blocks within the last 24 hours, if you want to view for the last 1 hour all you need to do is to change the 24 in the url to 1 `http://localhost:7000/api/missed-blocks/1` or for any number of hours you intend viewing
