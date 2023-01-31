@@ -67,7 +67,7 @@ cd avail_missed_blocks
 
 Run the following commannds to pull the docker images and start the container services :
 
-```json
+```bash
 docker-compose up --build -d
 ```
 
