@@ -44,7 +44,7 @@ POSTGRES_USER=postgres
 # Rough estimate of blocks assumed to be produced in 5 minutes
 TOTAL_EXPECTED_BLOCK=15
 # Express server port
-PORT=8000
+PORT=8080
 ```
 
 ## Notes
