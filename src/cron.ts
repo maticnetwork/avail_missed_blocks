@@ -5,7 +5,7 @@ const sub = new Subscription();
 
 export class CronService {
   async base() {
-    //every minute
+    //every five minute
     cron.schedule("*/5 * * * *", async () => {
       console.log("Running Cron Job for getting last block header");
       sub.main();

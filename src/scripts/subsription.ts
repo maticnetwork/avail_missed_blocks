@@ -57,7 +57,7 @@ export class Subscription {
     try {
       console.log("\n");
       console.log("--------------------------------------------");
-      console.log("Starting cron: run every minute");
+      console.log("Starting cron: run every five minute");
       console.log("--------------------------------------------");
       console.log("\n");
       const { block, hash } = data;
