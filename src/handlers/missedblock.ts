@@ -29,7 +29,6 @@ export class MissedBlockHandler {
         total_block_produced_within_time: total_block_produced_within_time,
         total_missed_blocks: total_missedblocks,
         duration_in_hrs: timeframe,
-        records: result,
       };
       return res.json(data);
     } catch (error) {
