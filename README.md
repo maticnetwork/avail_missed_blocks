@@ -49,10 +49,13 @@ PORT=8000
 
 ## Notes
 
-- This service is experiemntal to help us track the number of missed block in the avail network, missed blocks could occur for various reasons.
+- This service is experiemental to help us track the number of missed block in the avail network, missed blocks could occur for various reasons.
 - 1. May be there is a best block stuk issue
 - 2. There could be a performamnce issue with the various validator nodes participating ion the network
-- This service have a cron job that runs every 5 minutes, the cron job subscribes to finalised block at every 5 minutes, looking at the performance of the avail network, approximately a single block is produced every 20 seconds. which means 15 blocks should be produced every 5 minutes, hence the reason for the "TOTAL_EXPECTED_BLOCK=15" in the .env configuration file.
+
+> `This service have a cron job that runs every 5 minutes` the cron job subscribes to finalised block headers at every 5 minutes, looking at the performance of the
+> `avail network`,approximately a single block is produced every 20 seconds. which means 15 blocks should be produced every 5 minutes, hence the reason for the
+> `TOTAL_EXPECTED_BLOCK=15` in the .env configuration file.
 
 ## Usage
 
