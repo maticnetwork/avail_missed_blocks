@@ -59,13 +59,13 @@ PORT=8000
 
 ## Usage
 
-cd in to the root directory of the cloned repository
+(A) cd in to the root directory of the cloned repository
 
 ```bash
 cd avail_missed_blocks
 ```
 
-Run the following command to pull the docker images and start the container services :
+(B) Run the following command to pull the docker images and start the container services :
 
 ```bash
 docker-compose up --build -d
@@ -78,10 +78,10 @@ Two (2) docker containers will be created namely:
 2. avail_missed_blocks_db_1 : 'For the postgres databse'
 ```
 
-Result:
+(C) Run the database migration against the `avail_missed_blocks_server_1` docker container.
 
-```json
-{ "block": 386, "extrinsics": ["{hex_encoded_extrinsic}"] }
+```bash
+docker exec avail_missed_blocks_server_1 yarn migrate
 ```
 
 Query parameter `decode=true` can be used to return submitted data in base64 encoded string:
