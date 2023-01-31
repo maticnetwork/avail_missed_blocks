@@ -33,7 +33,6 @@ PORT=8000
 ## Config reference
 
 ```yaml
-log_level = "info"
 # Database host
 POSTGRES_HOST=127.0.0.1
 # Database name
