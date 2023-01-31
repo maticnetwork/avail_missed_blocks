@@ -65,16 +65,17 @@ cd in to the root directory of the cloned repository
 cd avail_missed_blocks
 ```
 
-Run the following commannds to pull the docker images and start the container services :
+Run the following command to pull the docker images and start the container services :
 
 ```bash
 docker-compose up --build -d
 ```
 
-Given a block number (as _(hexa-)_ decimal number), return the extrinsic in hex string format, if app id is specified in the config
+Two (2) docker containers will be created namely:
 
 ```bash
-curl -s localhost:7000/v1/appdata/<block-number>
+1. avail_missed_blocks_server_1 : 'for the express serve'
+2. avail_missed_blocks_db_1 : 'For the postgres databse'
 ```
 
 Result:
