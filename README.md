@@ -128,10 +128,10 @@ received data: CREATE TABLE blocks(id SERIAL PRIMARY KEY, blocknumber BIGINT, ha
 Done in 1.52s.
 ```
 
-Query parameter `decode=true` can be used to return submitted data in base64 encoded string:
+Query the below url to get missed block for the last 24 hours `http://localhost:8080/api/missed-blocks/{hour}`:
 
 ```bash
-curl -s localhost:7000/v1/appdata/<block-number>?decode=true
+curl http://localhost:8080/api/missed-blocks/24
 ```
 
 ## Test the missed block service
