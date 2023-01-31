@@ -1,5 +1,7 @@
 FROM node:17-alpine
 
+RUN apk add g++ make py3-pip
+
 WORKDIR /app
 
 COPY package.json .
