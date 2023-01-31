@@ -49,11 +49,10 @@ PORT=8000
 
 ## Notes
 
-- When running the first light client in a network, it becomes a bootstrap client. Once its execution is started, it is paused until a second light client has been started and connected to it, so that the DHT bootstrap mechanism can complete successfully.
-- Immediately after starting a fresh light client, block sync is executed to a block depth set in the `sync_blocks_depth` config parameter. The sync client is using both the DHT and RPC for that purpose.
-- In order to spin up a fat client, config needs to contain the `block_matrix_partition` parameter set to a fraction of matrix. It is recommended to set the `disable_proof_verification` to true, because of the resource costs of proof verification.
-- `sync_blocks_depth` needs to be set correspondingly to the max number of blocks the connected node is caching (if downloading data via RPC).
-- Prometheus is used for exposing detailed metrics about the light client
+- This service is experiemntal to help us track the number of missed block in the avail network, missed blocks could occur for various reasons.
+- 1. May be there is a best block stuk issue
+- 2. There could be a performamnce issue with the various validator nodes participating ion the network
+- This service have a cron job that runs every 5 minutes, the cron job subscribes to finalised block at every 5 minutes, looking at the performance of the avail network, approximately a single block is produced every 20 seconds. which means 15 blocks should be produced every 5 minutes, hence the reason for the "TOTAL_EXPECTED_BLOCK=15" in the .env configuration file.
 
 ## Usage
 
