@@ -29,6 +29,11 @@ export class Subscription {
       const hash = `${lastHeader.hash}`;
       await this.create({ block: block, hash: hash });
 
+      await api.disconnect();
+
+      wsProvider.on("disconnected", () =>
+        console.log("provider", "disconnected")
+      );
       // Subscribe to the new headers
       // await api.rpc.chain.subscribeNewHeads(async (lastHeader) => {
       //   console.log(
